@@ -1,16 +1,24 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CountryDetailsPage from "./pages/CountryDetailsPage";
+import SearchPage from "./pages/SearchPage";
+import "bootstrap/dist/css/bootstrap.css";
+import { Navbar, Container } from "react-bootstrap";
 
 function App() {
   return (
     <div className="App">
-      {/* <NavBar> */}
-      {/* <BrowserRouter>
+      <Navbar bg="light">
+        <Container>
+          <Navbar.Brand href="/">Countrify</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<SearchPage />} />
           <Route path="/countryDetails" element={<CountryDetailsPage />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
