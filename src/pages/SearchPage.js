@@ -1,8 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const SearchPage = () => {
   const [value, setValue] = useState("");
+  const [country, setCountry] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((res) => {
+        const data = res.data;
+        // console.log(res);
+        console.log(data);
+        // setCountry(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -13,6 +29,11 @@ const SearchPage = () => {
         onChange={(event) => setValue(event.target.value)}
       ></input>
       <button>Search</button>
+      <ul>
+        {country.map((c) => (
+          <li key={c.id}>{c.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
