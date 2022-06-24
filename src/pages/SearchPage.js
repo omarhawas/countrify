@@ -22,9 +22,9 @@ const SearchPage = () => {
   // }, []);
 
   const getData = async () => {
-    const data = await axios.get("https://restcountries.com/v3.1/all");
-    setData(data);
-    console.log(data.data[6]);
+    const d = await axios.get("https://restcountries.com/v3.1/all");
+    setData(d.data);
+    console.log(d.data);
   };
 
   useEffect(() => {
@@ -40,11 +40,11 @@ const SearchPage = () => {
         onChange={(event) => setValue(event.target.value)}
       ></input>
       <button>Search</button>
-      {/* <ul>
+      <ul>
         {data.map((d) => (
-          <li key={d.id}>{d.title}</li>
+          <li key={d.name.common}>{d.name.common}</li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };
