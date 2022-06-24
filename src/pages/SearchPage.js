@@ -4,7 +4,7 @@ import axios from "axios";
 
 const SearchPage = () => {
   const [value, setValue] = useState("");
-  const [data, setData] = useState([]);
+  const [countries, setCountries] = useState([]);
   // const [country, setCountry] = useState([]);
 
   // useEffect(() => {
@@ -22,9 +22,9 @@ const SearchPage = () => {
   // }, []);
 
   const getData = async () => {
-    const d = await axios.get("https://restcountries.com/v3.1/all");
-    setData(d.data);
-    console.log(d.data);
+    const data = await axios.get("https://restcountries.com/v3.1/all");
+    setCountries(data.data);
+    console.log(data.data);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const SearchPage = () => {
       ></input>
       <button>Search</button>
       <ul>
-        {data.map((d) => (
+        {countries.map((d) => (
           <li key={d.name.common}>{d.name.common}</li>
         ))}
       </ul>
