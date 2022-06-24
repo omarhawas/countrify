@@ -4,20 +4,31 @@ import axios from "axios";
 
 const SearchPage = () => {
   const [value, setValue] = useState("");
-  const [country, setCountry] = useState([]);
+  const [data, setData] = useState([]);
+  // const [country, setCountry] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://restcountries.com/v3.1/all")
+  //     .then((res) => {
+  //       const data = res.data;
+  //       // console.log(res);
+  //       console.log(data);
+  //       // setCountry();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  const getData = async () => {
+    const data = await axios.get("https://restcountries.com/v3.1/all");
+    setData(data);
+    console.log(data.data[6]);
+  };
 
   useEffect(() => {
-    axios
-      .get("https://restcountries.com/v3.1/all")
-      .then((res) => {
-        const data = res.data;
-        // console.log(res);
-        console.log(data);
-        // setCountry(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getData();
   }, []);
 
   return (
@@ -29,11 +40,11 @@ const SearchPage = () => {
         onChange={(event) => setValue(event.target.value)}
       ></input>
       <button>Search</button>
-      <ul>
-        {country.map((c) => (
-          <li key={c.id}>{c.title}</li>
+      {/* <ul>
+        {data.map((d) => (
+          <li key={d.id}>{d.title}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
