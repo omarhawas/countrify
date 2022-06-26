@@ -3,6 +3,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const CountryList = ({ countries }) => {
+  return (
+    <ul>
+      {countries.map((d) => (
+        <li key={d.name.common}>
+          <Link to={`countryDetails/${d.name.common}`}>{d.name.common}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const SearchResults = ({ countries, filteredCountries, searchTermExists }) => {
+  if (!searchTermExists) {
+    return <CountryList countries={countries} />;
+  } else if (searchTermExists && filteredCountries.length > 0) {
+    return <CountryList countries={filteredCountries} />;
+  }
+  return <h2>No Results Found</h2>;
+};
+
 const SearchPage = () => {
   const [value, setValue] = useState("");
   const [countries, setCountries] = useState([]);
@@ -55,14 +76,11 @@ const SearchPage = () => {
     <div>
       <h1>Search Page</h1>
       <input type="text" value={value} onChange={handleInputChange}></input>
-      {/* <button onClick={() => filterCountries(value)}>Search</button> */}
-      <ul>
-        {filteredCountries.map((d) => (
-          <li key={d.name.common}>
-            <Link to={`countryDetails/${d.name.common}`}>{d.name.common}</Link>
-          </li>
-        ))}
-      </ul>
+      <SearchResults
+        filteredCountries={filteredCountries}
+        countries={countries}
+        searchTermExists={value !== ""}
+      />
     </div>
   );
 };
