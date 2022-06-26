@@ -16,7 +16,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SearchPage />} />
-          <Route path="/countryDetails" element={<CountryDetailsPage />} />
+          <Route
+            path="/countryDetails/:name"
+            element={<CountryDetailsPage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SearchPage = () => {
   const [value, setValue] = useState("");
@@ -57,7 +58,9 @@ const SearchPage = () => {
       {/* <button onClick={() => filterCountries(value)}>Search</button> */}
       <ul>
         {filteredCountries.map((d) => (
-          <li key={d.name.common}>{d.name.common}</li>
+          <li key={d.name.common}>
+            <Link to={`countryDetails/${d.name.common}`}>{d.name.common}</Link>
+          </li>
         ))}
       </ul>
     </div>
