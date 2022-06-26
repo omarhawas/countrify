@@ -5,6 +5,8 @@ import axios from "axios";
 const SearchPage = () => {
   const [value, setValue] = useState("");
   const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
   // const [country, setCountry] = useState([]);
 
   // useEffect(() => {
@@ -22,9 +24,26 @@ const SearchPage = () => {
   // }, []);
 
   const getData = async () => {
-    const data = await axios.get("https://restcountries.com/v3.1/all");
-    setCountries(data.data);
-    console.log(data.data);
+    const result = await axios.get("https://restcountries.com/v3.1/all");
+    setCountries(result.data);
+    console.log(result.data);
+  };
+
+  // all countries are stored in an array. Filter through array and return country that matches
+  // event.target.value.
+
+  const filterCountries = (searchTerm) => {
+    const countriesArray = countries.filter((country) => {
+      return country.name.common
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    });
+    setFilteredCountries(countriesArray);
+  };
+
+  const handleInputChange = (event) => {
+    setValue(event.target.value);
+    filterCountries(event.target.value);
   };
 
   useEffect(() => {
@@ -34,14 +53,10 @@ const SearchPage = () => {
   return (
     <div>
       <h1>Search Page</h1>
-      <input
-        type="text"
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-      ></input>
-      <button>Search</button>
+      <input type="text" value={value} onChange={handleInputChange}></input>
+      {/* <button onClick={() => filterCountries(value)}>Search</button> */}
       <ul>
-        {countries.map((d) => (
+        {filteredCountries.map((d) => (
           <li key={d.name.common}>{d.name.common}</li>
         ))}
       </ul>
