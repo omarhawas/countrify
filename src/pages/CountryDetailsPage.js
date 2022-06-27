@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Table } from "react-bootstrap";
 
 const CountryDetail = ({ country }) => {
   if (!country.name) {
@@ -9,7 +10,28 @@ const CountryDetail = ({ country }) => {
   return (
     <div>
       <p>{country.name.common}</p>
-      <img src={country.flags.png} />
+      <img src={country.flags.png} className="flag" />
+      <Table striped bordered hover variant="dark" className="table">
+        <thead>
+          <tr>
+            <th>Continent</th>
+            <th>Capital City</th>
+            <th>Currency</th>
+            <th>Bordering Nations</th>
+            <th>Language</th>
+            <th>Population</th>
+            <th>Time Zone</th>
+            <th>Start of Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{country.continents}</td>
+            <td>{country.capital}</td>
+            <td>{country.currencies.name}</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 };
@@ -33,7 +55,7 @@ const CountryDetailsPage = (props) => {
   return (
     <div>
       <h1>Country Details</h1>
-      <CountryDetail country={country} />
+      <CountryDetail country={country} style={{ color: "red" }} />
       {/* <p>{country.name?.common}</p> */}
     </div>
   );

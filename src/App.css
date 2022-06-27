@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.table {
+  color: red;
+  border: 15px solid;
+  margin-top: 75px;
+}
+
+.title {
+  font-weight: bold;
+  color: red;
+}
+
+.flag {
+  border: 10px solid black;
+}
+
+.input {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.searchTitle {
+  margin-top: 35px;
+  font-weight: bold;
+}

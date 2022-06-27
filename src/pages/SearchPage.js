@@ -74,8 +74,13 @@ const SearchPage = () => {
 
   return (
     <div>
-      <h1>Search Page</h1>
-      <input type="text" value={value} onChange={handleInputChange}></input>
+      <h1 className="searchTitle">Search For A Country</h1>
+      <input
+        type="text"
+        value={value}
+        onChange={handleInputChange}
+        className="input"
+      ></input>
       <SearchResults
         filteredCountries={filteredCountries}
         countries={countries}
