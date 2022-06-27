@@ -7,8 +7,8 @@ import { Navbar, Container } from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar bg="light">
+    <div className="body">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">Countrify</Navbar.Brand>
         </Container>
