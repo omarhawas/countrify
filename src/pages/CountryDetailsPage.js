@@ -59,7 +59,7 @@ const CountryDetailsPage = (props) => {
 
   return (
     <div>
-      <h1>Country Details</h1>
+      <h1 className="countryDetailsTitle">Country Details</h1>
       <CountryDetail country={country} />
     </div>
   );
