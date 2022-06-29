@@ -32,7 +32,7 @@ const CountryDetail = ({ country }) => {
             <td>{country.area}</td>
             {/* <td>{country.languages.ell}</td> */}
             <td>{country.population}</td>
-            <td>{country.timezones[0]}</td>
+            <td>{country.timezones}</td>
             <td>{country.startOfWeek}</td>
           </tr>
         </tbody>
@@ -60,7 +60,7 @@ const CountryDetailsPage = (props) => {
   return (
     <div>
       <h1 className="countryDetailsTitle">Country Details</h1>
-      <CountryDetail country={country} />
+      <CountryDetail country={country} className="countryName" />
     </div>
   );
 };

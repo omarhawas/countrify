@@ -2,14 +2,23 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Accordion } from "react-bootstrap";
 
 const CountryList = ({ countries }) => {
   return (
     <ul>
       {countries.map((d) => (
-        <li key={d.name.common}>
-          <Link to={`countryDetails/${d.name.common}`}>{d.name.common}</Link>
-        </li>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>{d.name.common}</Accordion.Header>
+            <Accordion.Body className="accordionBody">
+              <Link to={`countryDetails/${d.name.common}`} key={d.name.common}>
+                {d.name.common}
+              </Link>
+              {` is a country located in ${d.name.continents}. Click on ${d.name.common} to learn more.`}
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       ))}
     </ul>
   );

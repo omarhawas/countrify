@@ -56,3 +56,11 @@
 .countryDetailsTitle {
   margin-top: 30px;
 }
+
+.countryName {
+  font-size: 100px;
+}
+
+.accordionBody {
+  text-align: left;
+}
